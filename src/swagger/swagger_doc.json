@@ -1,0 +1,36 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Book Wise RestAPI",
+    "description": "Teste prático para a matéria de Mobile do Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais (IFMG) - Campus Sabará."
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/book/search": {
+      "get": {
+        "tags": [
+          "book"
+        ],
+        "description": "Pesquisar livros",
+        "parameters": [
+          {
+            "name": "term",
+            "description": "Termo para buscar a livro",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
