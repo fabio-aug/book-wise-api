@@ -9,11 +9,14 @@ const doc = {
       'Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais (IFMG) - Campus Sabará.'
   },
   host: 'localhost:3001',
-  schemes: ['http']
+  schemes: ['http', 'https']
 };
 
 const endpointsFiles = [
   './src/controllers/BookController.ts',
+  './src/controllers/UserController.ts',
+  './src/controllers/GenderController.ts',
+  './src/controllers/ReviewController.ts',
 ];
 
 const outputFile = './src/swagger/swagger_doc.json';

@@ -1,19 +1,21 @@
-import {IScoreDto} from './ScoreInteface';
+import { IGenderDto } from './GenderInterface';
+import { IReviewDto } from './ReviewInterface';
 
 export interface IBookDto {
   id: number,
   title: string,
   author: string,
   synopsis: string | null,
-  gender: string,
   image: string | null,
-  Score?: IScoreDto[]
+  sharing: number,
+  averageReview: number,
+  reviews?: IReviewDto[]
+  genders?: IGenderDto[]
 }
 
 export interface ISearchBookInput {
-  term?: string;
-}
-
-export interface ISearchBookOutput {
-  bookList: IBookDto[]
+  page: number,
+  term: string,
+  idGender: number,
+  itemsPerPage: number,
 }

@@ -8,7 +8,8 @@
   "host": "localhost:3001",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/book/search": {
@@ -16,18 +17,649 @@
         "tags": [
           "book"
         ],
-        "description": "Pesquisar livros",
+        "description": "Pesquisar livros.",
         "parameters": [
           {
             "name": "term",
-            "description": "Termo para buscar a livro",
+            "description": "Termo de busca.",
             "type": "string",
+            "in": "query"
+          },
+          {
+            "name": "page",
+            "description": "Página atual.",
+            "type": "number",
+            "in": "query"
+          },
+          {
+            "name": "itemsPerPage",
+            "description": "Quantidade de itens por página.",
+            "type": "number",
+            "in": "query"
+          },
+          {
+            "name": "idGender",
+            "description": "Id gênero literário.",
+            "type": "number",
             "in": "query"
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "title"
+                      },
+                      "author": {
+                        "type": "string",
+                        "example": "author"
+                      },
+                      "synopsis": {
+                        "type": "string",
+                        "example": "synopsis"
+                      },
+                      "image": {
+                        "type": "string",
+                        "example": "image"
+                      },
+                      "sharing": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "averageReview": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "genders": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": 0
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "label"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Sucesso"
+          },
+          "500": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "Mensagem de erro."
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Erro"
+          }
+        }
+      }
+    },
+    "/book/getRandomBook": {
+      "get": {
+        "tags": [
+          "book"
+        ],
+        "description": "Buscar uma livro aleatório.",
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "title"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "author"
+                    },
+                    "synopsis": {
+                      "type": "string",
+                      "example": "synopsis"
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "image"
+                    },
+                    "sharing": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "averageReview": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "genders": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "label": {
+                            "type": "string",
+                            "example": "label"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Sucesso"
+          },
+          "500": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "Mensagem de erro."
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Erro"
+          }
+        }
+      }
+    },
+    "/user/create": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "Criar usuário",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "description": "Usuário"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "string"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "string"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "string"
+                    },
+                    "reviews": {
+                      "type": "array",
+                      "example": [],
+                      "items": {}
+                    }
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Sucesso"
+          },
+          "500": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "Mensagem de erro."
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Erro"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "Login de usuário",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "description": "Usuário"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "string"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "string"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "string"
+                    },
+                    "reviews": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "idUser": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "idBook": {
+                            "type": "number",
+                            "example": 0
+                          },
+                          "stars": {
+                            "type": "number",
+                            "example": 0
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Sucesso"
+          },
+          "500": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "Mensagem de erro."
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Erro"
+          }
+        }
+      }
+    },
+    "/gender/getAll": {
+      "get": {
+        "tags": [
+          "gender"
+        ],
+        "description": "Buscar todos os gêneros.",
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "label": {
+                        "type": "string",
+                        "example": "label"
+                      }
+                    }
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Sucesso"
+          },
+          "500": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "Mensagem de erro."
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Erro"
+          }
+        }
+      }
+    },
+    "/review/create": {
+      "post": {
+        "tags": [
+          "review"
+        ],
+        "description": "Criar review de livro.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "stars": {
+                  "type": "number",
+                  "example": 0
+                },
+                "idBook": {
+                  "type": "number",
+                  "example": 0
+                },
+                "idUser": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            },
+            "description": "Review"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "stars": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "idUser": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "idBook": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Sucesso"
+          },
+          "500": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "Mensagem de erro."
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Erro"
+          }
+        }
+      }
+    },
+    "/review/update": {
+      "put": {
+        "tags": [
+          "review"
+        ],
+        "description": "Atualizar review de livro.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 0
+                },
+                "stars": {
+                  "type": "number",
+                  "example": 0
+                }
+              }
+            },
+            "description": "Review"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "stars": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "idUser": {
+                      "type": "number",
+                      "example": 0
+                    },
+                    "idBook": {
+                      "type": "number",
+                      "example": 0
+                    }
+                  }
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Sucesso"
+          },
+          "500": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "Mensagem de erro."
+                },
+                "status": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            },
+            "description": "Erro"
           }
         }
       }

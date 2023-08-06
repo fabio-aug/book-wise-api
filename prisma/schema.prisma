@@ -11,27 +11,36 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @unique @default(autoincrement())
-  email    String  @unique
+  id       Int      @id @unique @default(autoincrement())
+  email    String   @unique
   name     String
   password String
-  Score    Score[]
+  reviews  Review[]
 }
 
 model Book {
-  id       Int     @id @unique @default(autoincrement())
-  title    String
-  author   String
-  synopsis String?
-  gender   String
-  image    String?
-  Score    Score[]
+  id            Int      @id @unique @default(autoincrement())
+  title         String
+  author        String
+  synopsis      String?
+  image         String?
+  sharing       Int
+  averageReview Float
+  reviews       Review[]
+  genders       Gender[]
 }
 
-model Score {
-  id     Int  @id @unique @default(autoincrement())
+model Gender {
+  id    Int    @id @unique @default(autoincrement())
+  label String
+  books Book[]
+}
+
+model Review {
+  id     Int   @id @unique @default(autoincrement())
   idUser Int
   idBook Int
-  user   User @relation(fields: [idUser], references: [id])
-  book   Book @relation(fields: [idBook], references: [id])
+  stars  Float
+  user   User  @relation(fields: [idUser], references: [id])
+  book   Book  @relation(fields: [idBook], references: [id])
 }
