@@ -5,11 +5,10 @@ const doc = {
   info: {
     version: '1.0.0',
     title: 'Book Wise RestAPI',
-    description: 'Teste prático para a matéria de Mobile do ' +
-      'Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais (IFMG) - Campus Sabará.'
+    description: 'Teste prático para a matéria de Mobile do Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais (IFMG) - Campus Sabará.'
   },
-  host: 'localhost:3001',
-  schemes: ['http', 'https']
+  host: 'book-wise-api.onrender.com',
+  schemes: ['https', 'http']
 };
 
 const endpointsFiles = [

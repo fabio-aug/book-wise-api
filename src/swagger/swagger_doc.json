@@ -5,11 +5,11 @@
     "title": "Book Wise RestAPI",
     "description": "Teste prático para a matéria de Mobile do Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais (IFMG) - Campus Sabará."
   },
-  "host": "localhost:3001",
+  "host": "book-wise-api.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/book/search": {
