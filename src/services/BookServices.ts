@@ -6,7 +6,7 @@ const PC = new PrismaClient();
 async function search(params: ISearchBookInput): Promise<IBookDto[]> {
   const data: IBookDto[] = await PC.book.findMany({
     take: Number(params.itemsPerPage),
-    skip: Number(params.itemsPerPage * params.page),
+    skip: Number(params.page) === 1 ? 0 : Number(params.itemsPerPage) * Number(params.page),
     include: {
       genders: {
         select: {
@@ -17,9 +17,9 @@ async function search(params: ISearchBookInput): Promise<IBookDto[]> {
     },
     where: {
       OR: [
-        { title: { contains: `%${params.term || ''}%` } },
-        { author: { contains: `%${params.term || ''}%` } },
-        { synopsis: { contains: `%${params.term || ''}%` } }
+        { title: { contains: params.term || '' } },
+        { author: { contains: params.term || '' } },
+        { synopsis: { contains: params.term || '' } }
       ],
       ...(Number(params.idGender) !== 0 ? {
         genders: {

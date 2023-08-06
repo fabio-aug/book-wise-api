@@ -5,11 +5,15 @@
   "main": "./src/Server.ts",
   "scripts": {
     "build": "tsc -p .",
+    "seed" : "npx prisma db seed",
     "start": "node ./dist/server.js",
-    "swagger": "node ./src/swagger/SwaggerGenerate.ts",
     "migrate": "npx prisma migrate dev --name init",
+    "swagger": "node ./src/swagger/SwaggerGenerate.ts",
     "dev": "nodemon --ignore swagger_doc.json ./src/Server.ts"
   },
+  "prisma": {
+		"seed": "ts-node ./src/seeders/Seed.ts"
+	},
   "keywords": [],
   "author": "",
   "license": "MIT",
