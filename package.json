@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -p .",
     "seed" : "npx prisma db seed",
-    "start": "node ./dist/server.js",
+    "start": "node ./dist/Server.js",
     "migrate": "npx prisma migrate dev --name init",
     "swagger": "node ./src/swagger/SwaggerGenerate.ts",
     "dev": "nodemon --ignore swagger_doc.json ./src/Server.ts"
