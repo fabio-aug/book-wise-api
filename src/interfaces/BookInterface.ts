@@ -7,7 +7,6 @@ export interface IBookDto {
   author: string,
   synopsis: string | null,
   image: string | null,
-  sharing: number,
   averageReview: number,
   reviews?: IReviewDto[]
   genders?: IGenderDto[]

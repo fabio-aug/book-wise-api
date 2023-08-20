@@ -53,7 +53,6 @@ bookController.get('/book/search', async (req: Request<null, null, null, ISearch
             author: 'author',
             synopsis: 'synopsis',
             image: 'image',
-            sharing: 0,
             averageReview: 0,
             genders: [{
               id: 0,
@@ -96,7 +95,6 @@ bookController.get('/book/getRandomBook', async (req: Request<null, null, null, 
           author: 'author',
           synopsis: 'synopsis',
           image: 'image',
-          sharing: 0,
           averageReview: 0,
           genders: [{
             id: 0,

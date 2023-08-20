@@ -24,7 +24,6 @@ model Book {
   author        String
   synopsis      String?
   image         String?
-  sharing       Int
   averageReview Float
   reviews       Review[]
   genders       Gender[]
